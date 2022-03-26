@@ -1,0 +1,193 @@
+<html>
+<!--head-->
+	<head>
+	  <meta charset="UTF-8">
+	  <title>Javascript Sampler</title>
+	  <style>
+		.title{
+			color: red;
+			font-size: x-large;
+			font-weight: bolder;
+		}
+		.content{
+			color: blue;
+			font-size: normal;
+		}
+		.validate{
+			color: red;
+			font-size: small;
+			font-weight: bold;
+		}
+		body{
+			font-family: Arial;
+		}
+	  </style>
+
+<!--body-->
+	<body>
+<!--math-->
+	<!--title-->
+		<div class='title'>Math:</div>
+	<!--content-->
+		1st value = <input type='number' id='math01' placeholder='input value...' onkeyup='calculate()'>
+		2nd value = <input type='number' id='math02' placeholder='input value...' onkeyup='calculate()'><br>
+		<span class='content' id='math03'></span><br>
+		<span class='content' id='math04'></span><br>
+		<span class='content' id='math05'></span><br>
+		<span class='content' id='math06'></span><br>
+		<span class='content' id='math07'></span>
+<!--locations-->
+	<!--title-->
+		<hr>
+		<div class='title'>Locations:</div>
+	<!--content-->
+		get RED from embedded script = <span id='locationsEmbedded'  style='background-color: red; color: white;'> </span><br>
+		get BLUE from external script = <span id='locationsExternal' style='background-color: blue; color: white;'></span>
+<!--notifications-->
+	<!--title-->
+		<hr>
+		<div class='title'>Notifications:</div>
+	<!--alert-->
+		<button onclick="alertMe()">Alert</button>
+	<!--confirm-->
+		<button onclick="confirmMe()">Confirm</button>
+<!--errors-->
+	<!--title-->
+		<hr>
+		<div class='title'>Exception Handling:</div>
+	<!--content-->
+		<div id='error' class='content'></div>
+<!--document-->
+	<!--title-->
+		<hr>
+		<div class='title'>Document Object:</div>
+	<!--content-->
+		screen.width = <span id ='width' class='content'></span><br>
+<!--	<script>
+			document.getElementById("width").innerHTML = screen.width;
+		</script> -->
+		screen.height = <span id='height'class='content'></span><br>
+		navigator.vendor = <span id='navigator' class='content'></span><br>
+		location.origin = <span id='origin' class='content'></span><br>
+		location = <span id='geo' class='content'></span> <button onclick="getLocation()">Get Location</button>
+
+<!--random-->
+	<!--title-->
+		<hr>
+		<div class='title'>Randomizers:</div>
+	<!--content-->
+		<input type='number' id='randomizer' readonly placeholder='Random #...'>
+		<button onclick="randomize()">Get Random#1-10</button>
+
+<!--events-->
+	<!--title-->
+		<hr>
+		<div class='title'>Events:</div>
+	<!--content-->
+		<div id='events' onmouseover='mousedOver()' onmouseout='mousedOut()'
+		style='text-align: center; padding: 20px; width: 200px; background-color: gray; color: white;'>MOUSE OVER ME!</div>
+<!--array functions-->
+	<!--title-->
+		<hr>
+		<div class='title'>Array Functionals/Data Structures:</div>
+	<!--array-->
+		<strong>for array=</strong><span id='arraySample' class='content'></span><br>
+		array.push('d')=<span id='arrayPush' class='content'></span><br>
+		array.pop()=<span id='arrayPop' class='content'></span><br>
+		array.unshift('e')=<span id='arrayUnshift' class='content'></span><br>
+		array.shift()=<span id='arrayShift' class='content'></span><br>
+		array.concat(second)=<span id='arrayConcat' class='content'></span><br>
+		array.includes('g')=<span id='arrayIncludes' class='content'></span><br>
+		<br>
+	<!--json-->
+		<strong>for json=</strong><span id='jsonSample'class='content'></span><br>
+		json.map(a => a._id).join()=<span id='arrayMap' class='content'></span><br>
+		json.filter(a => a.field02 || a.field01 == 10).map(a => a._id).join()=<span id='arrayFilter' class='content'></span><br>
+		json.findIndex(a => a._id == 'id02')=<span id='arrayIndex' class='content'></span><br>
+		json.find(a => a._id == 'id02')._id=<span id='arrayFind' class='content'></span><br>
+		json.sort((a, b) => a.field02.localeCompare(b.field02)).map(a => a.field02)=<span id='arraySort' class='content'></span><br>
+		json.splice(1, 1).map(a => a._id)[0]=<span id='arraySplice' class='content'></span><br>
+		json.some(a => a.field03)=<span id='arraySome' class='content'></span><br>
+<!--falsy truthy-->
+	<!--title-->
+		<hr>
+		<div class='title'>Falsy/Truthy:</div>
+	<!--content-->
+		<strong>Falsies=</strong><br>
+		Boolean(false)=<span id='falsy01' class='content'></span><br>
+		Boolean(0)=<span id='falsy02' class='content'></span><br>
+		Boolean('')=<span id='falsy03' class='content'></span><br>
+		Boolean(null)=<span id='falsy04' class='content'></span><br>
+		Boolean(undefined)=<span id='falsy05' class='content'></span><br>
+		<br><strong>Truthies=</strong><br>
+		Boolean(true)=<span id='truthy01' class='content'></span><br>
+		Boolean('0')=<span id='truthy02' class='content'></span><br>
+		Boolean([])=<span id='truthy03' class='content'></span><br>
+		Boolean({})=<span id='truthy04' class='content'></span><br>
+		Boolean(1)=<span id='truthy05' class='content'></span><br>
+<!--string functions-->
+	<!--title-->
+		<hr>
+		<div class='title'>String Methods:</div>
+	<!--content-->
+		<strong>For string=</strong><span id='stringSample'class='content'></span><br>
+		phrase.trim()=<span id='stringTrim' class='content'></span><br>
+		phrase.toUpperCase()=<span id='stringUpper' class='content'></span><br>
+		phrase.toLowerCase()=<span id='stringLower' class='content'></span><br>
+		phrase.slice(0, 5)=<span id='stringSlice' class='content'></span><br>
+		phrase.split(' ')=<span id='stringSplit' class='content'></span><br>
+		phrase.replace("Friend", "Person")=<span id='stringReplace' class='content'></span><br>
+		phrase.concat('s')=<span id='stringConcat' class='content'></span><br>
+		phrase.charAt(0)=<span id='stringChartAt' class='content'></span><br>
+		is string palindrome=<span id='stringPalindrome' class='content'></span>
+<!--classes-->
+	<!--title-->
+		<hr>
+		<div class='title'>Classes:</div>
+	<!--content-->
+		<strong>For an animal class with 2 props, the following 2 objects/instances were created:</strong><br>
+		new animal("bear", 12)=<span id='class01' class='content'></span><br>
+		new animal("horse", 15)=<span id='class02' class='content'></span>
+<!--regex-->
+	<!--title-->
+		<hr>
+		<div class='title'>Regex Validation:</div>
+	<!--numbers-->
+		<input type='text' id='regexNumber'
+			placeholder='Type number(#)...'
+			onkeyup='validate("number")'
+			style='width: 200px;'>
+		<span id='validateNumber' class='validate'></span><br>
+	<!--phone-->
+		<input type='text' id='regexPhone'
+			placeholder='Type phone(123-456-7890)...'
+			onkeyup='validate("phone")'
+			style='width: 200px;'>
+		<span id='validatePhone' class='validate'></span><br>
+	<!--email-->
+		<input type='text' id='regexEmail'
+			placeholder='Type email(x@x.com)...'
+			onkeyup='validate("email")'
+			style='width: 200px;'>
+		<span id='validateEmail' class='validate'></span><br>
+<!--algorithms-->
+	<!--title-->
+		<hr>
+		<div class='title'>Algorithms:</div>
+	<!--array-->
+		For array = <span id='algorSample' class='content'></span><br>
+		Max=<span id='algorMax' class='content'></span><br>
+		Dups=<span id='algorDups' class='content'></span><br>
+		Primes=<span id='algorPrimes' class='content'></span><br>
+<!--embedded-->
+	<script>
+		document.getElementById("locationsEmbedded").innerHTML = "RED";
+	</script>
+<!--import-->
+	<script type="text/javascript" src="script.js">
+
+	</body>
+
+
+	</script>
+</html>
